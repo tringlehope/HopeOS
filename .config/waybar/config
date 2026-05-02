@@ -1,0 +1,62 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 26,
+    "exclusive": true,
+    "fixed-center": true,
+    /*"margin-top": 5,*/
+    /*"margin-left": 10,*/
+    /*"margin-right": 10,*/
+
+    "modules-left": ["custom/launcher", "hyprland/workspaces"],
+    "modules-center": ["clock#date", "clock#time"],
+    "modules-right": ["group/tray-drawer", "pulseaudio", "hyprland/language", "bluetooth", "network", "group/power-drawer"],
+
+    "custom/launcher": {
+        "format": "",
+        "on-click": "pkill rofi || rofi -show drun"
+    },
+
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "on-click": "activate",
+        "on-scroll-up": "hyprctl dispatch workspace r-1",
+        "on-scroll-down": "hyprctl dispatch workspace r+1",
+        "all-outputs": false,
+        "persistent-workspaces": {
+        }
+    },
+
+    "clock#date": { "format": "󰸗 {:%d.%m.%Y}" },
+    "clock#time": { "format": "󱑂 {:%H:%M}" },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟",
+        "format-icons": { "default": [""] },
+        "on-click": "pavucontrol"
+    },
+    "hyprland/language": { "format": "󰗊 {short}" },
+    "bluetooth": { "format": "󰂯", "on-click": "blueman-manager" },
+    "network": {
+    "format-wifi": "󰤨",
+    "format-ethernet": "󰈀",
+    "format-disconnected": "󰤮",
+    "on-click": "kitty -e nmtui" 
+},
+
+    "group/tray-drawer": {
+        "orientation": "horizontal",
+        "drawer": { "transition-duration": 500, "transition-left-to-right": true },
+        "modules": ["custom/tray-arrow", "tray"]
+    },
+    "custom/tray-arrow": { "format": "" },
+
+    "group/power-drawer": {
+        "orientation": "horizontal",
+        "drawer": { "transition-duration": 500, "transition-left-to-right": false },
+        "modules": ["custom/power", "custom/reboot", "custom/suspend"]
+    },
+    "custom/power": { "format": "󰐥", "on-click": "shutdown now" },
+    "custom/reboot": { "format": "󰜉", "on-click": "reboot" },
+    "custom/suspend": { "format": "󰒲", "on-click": "systemctl suspend" }
+}
