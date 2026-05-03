@@ -1,62 +1,69 @@
-{
-    "layer": "top",
-    "position": "top",
-    "height": 26,
-    "exclusive": true,
-    "fixed-center": true,
-    /*"margin-top": 5,*/
-    /*"margin-left": 10,*/
-    /*"margin-right": 10,*/
-
-    "modules-left": ["custom/launcher", "hyprland/workspaces"],
-    "modules-center": ["clock#date", "clock#time"],
-    "modules-right": ["group/tray-drawer", "pulseaudio", "hyprland/language", "bluetooth", "network", "group/power-drawer"],
-
-    "custom/launcher": {
-        "format": "",
-        "on-click": "pkill rofi || rofi -show drun"
-    },
-
-    "hyprland/workspaces": {
-        "format": "{name}",
-        "on-click": "activate",
-        "on-scroll-up": "hyprctl dispatch workspace r-1",
-        "on-scroll-down": "hyprctl dispatch workspace r+1",
-        "all-outputs": false,
-        "persistent-workspaces": {
-        }
-    },
-
-    "clock#date": { "format": "󰸗 {:%d.%m.%Y}" },
-    "clock#time": { "format": "󱑂 {:%H:%M}" },
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-muted": "󰝟",
-        "format-icons": { "default": [""] },
-        "on-click": "pavucontrol"
-    },
-    "hyprland/language": { "format": "󰗊 {short}" },
-    "bluetooth": { "format": "󰂯", "on-click": "blueman-manager" },
-    "network": {
-    "format-wifi": "󰤨",
-    "format-ethernet": "󰈀",
-    "format-disconnected": "󰤮",
-    "on-click": "kitty -e nmtui" 
-},
-
-    "group/tray-drawer": {
-        "orientation": "horizontal",
-        "drawer": { "transition-duration": 500, "transition-left-to-right": true },
-        "modules": ["custom/tray-arrow", "tray"]
-    },
-    "custom/tray-arrow": { "format": "" },
-
-    "group/power-drawer": {
-        "orientation": "horizontal",
-        "drawer": { "transition-duration": 500, "transition-left-to-right": false },
-        "modules": ["custom/power", "custom/reboot", "custom/suspend"]
-    },
-    "custom/power": { "format": "󰐥", "on-click": "shutdown now" },
-    "custom/reboot": { "format": "󰜉", "on-click": "reboot" },
-    "custom/suspend": { "format": "󰒲", "on-click": "systemctl suspend" }
+* {
+    border: none;
+    border-radius: 1;
+    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free";
+    font-size: 14px;
+    min-height: 0;
 }
+
+window#waybar {
+    background: rgba(28, 29, 41, 0.8);
+    color: #cdd6f4;
+}
+
+#pulseaudio, #network, #bluetooth, #language, #custom-tray-arrow, #custom-power, #custom-suspend {
+    font-size: 20px;
+    padding: 0 10px;
+}
+
+#network{
+    font-size: 20px;
+    padding: 0 10px;
+}
+
+#custom-reboot{
+    font-size: 20px;
+    padding:   0 15px;
+}
+
+#custom-launcher {
+    color: #80acff;
+    font-size: 20px;
+    padding: 0 10px;
+}
+
+#clock {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 0 15px;
+}
+
+#workspaces button {
+    padding: 0 4px;
+    margin: 0 4px;
+    font-size: 20px;
+    background: transparent;
+    color: #565f89;
+}
+
+#workspaces button.occupied {
+    color: #7dcfff;
+    text-shadow: 0 0 5px rgba(125, 207, 255, 0.6);
+}
+
+#workspaces button.active {
+    color: #ffffff;
+    border-bottom: 3px solid #89b4fa;
+}
+
+#workspaces button.persistent {
+}
+
+#workspaces button.focused,
+#workspaces button.urgent {
+    border-bottom: 3px solid #f7768e;
+}
+
+
+#tray { margin-left: 8px; }
+.tray-child, .power-child { padding: 0 6px; }
